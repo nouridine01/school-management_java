@@ -23,6 +23,7 @@ public class SchoolApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SchoolApplication.class, args);
 	}
+<<<<<<< HEAD
 
 	@Bean
 	public BCryptPasswordEncoder getEncoder(){
@@ -36,4 +37,6 @@ public class SchoolApplication implements CommandLineRunner {
 		repositoryRestConfiguration.exposeIdsFor( User.class, Role.class, UserRole.class);
 	}
 
+=======
+>>>>>>> cd87140ac4d367e24eeee7f4591ecbaeb7e81a4e
 }
