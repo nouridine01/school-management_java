@@ -4,7 +4,7 @@ package com.noor.school.controllers;
 import com.noor.school.entities.Role;
 import com.noor.school.entities.User;
 import com.noor.coronavirus.repositories.RoleRepository;
-import com.noor.coronavirus.repositories.UserRepository;
+import com.noor.school.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
