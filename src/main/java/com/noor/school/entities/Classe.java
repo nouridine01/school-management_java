@@ -13,7 +13,9 @@ public class Classe {
 	private long id_classe;
 	private String libelle_classe;
 	private Date created_at;
+	private int created_by;
 	private Date modified_at;
+	private int modified_by;
 	
 	public Classe() {
 		super();
@@ -27,7 +29,18 @@ public class Classe {
 		this.libelle_classe = libelle_classe;
 	}
 
+	
 
+	public Classe(long id_classe, String libelle_classe, Date created_at, int created_by, Date modified_at,
+			int modified_by) {
+		super();
+		this.id_classe = id_classe;
+		this.libelle_classe = libelle_classe;
+		this.created_at = created_at;
+		this.created_by = created_by;
+		this.modified_at = modified_at;
+		this.modified_by = modified_by;
+	}
 
 	public Classe(long id, String libelle, Date created_at, Date modified_at) {
 		super();
@@ -67,6 +80,30 @@ public class Classe {
 
 	public void setModified_at(Date modified_at) {
 		this.modified_at = modified_at;
+	}
+
+
+
+	public int getModified_by() {
+		return modified_by;
+	}
+
+
+
+	public void setModified_by(int modified_by) {
+		this.modified_by = modified_by;
+	}
+
+
+
+	public int getCreated_by() {
+		return created_by;
+	}
+
+
+
+	public void setCreated_by(int created_by) {
+		this.created_by = created_by;
 	}
 	
 	

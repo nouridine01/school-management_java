@@ -16,7 +16,9 @@ public class Seance {
 	private String heure_debut;
 	private String heure_fin;
 	private Date created_at;
+	private int created_by;
 	private Date modified_at;
+	private int modified_by;
 	
 	public Seance() {
 		super();
@@ -31,6 +33,20 @@ public class Seance {
 		this.heure_fin = heure_fin;
 	}
 	
+	public Seance(long id, String libelle, String description, String heure_debut, String heure_fin, Date created_at,
+			int created_by, Date modified_at, int modified_by) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.description = description;
+		this.heure_debut = heure_debut;
+		this.heure_fin = heure_fin;
+		this.created_at = created_at;
+		this.created_by = created_by;
+		this.modified_at = modified_at;
+		this.modified_by = modified_by;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -85,6 +101,22 @@ public class Seance {
 	
 	public void setModified_at(Date modified_at) {
 		this.modified_at = modified_at;
+	}
+
+	public int getCreated_by() {
+		return created_by;
+	}
+
+	public void setCreated_by(int created_by) {
+		this.created_by = created_by;
+	}
+
+	public int getModified_by() {
+		return modified_by;
+	}
+
+	public void setModified_by(int modified_by) {
+		this.modified_by = modified_by;
 	}
 		
 	

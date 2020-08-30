@@ -3,12 +3,12 @@ package com.noor.school.controllers;
 
 import com.noor.school.entities.Role;
 import com.noor.school.entities.User;
-import com.noor.coronavirus.repositories.RoleRepository;
-import com.noor.coronavirus.repositories.UserRepository;
+import com.noor.school.repositories.RoleRepository;
+import com.noor.school.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +21,8 @@ import java.time.format.DateTimeFormatter;
 @CrossOrigin("*")
 @RestController
 public class UserController {
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    BCryptPasswordEncoder bCryptPasswordEncoder;
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;

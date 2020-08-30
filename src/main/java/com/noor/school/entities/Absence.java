@@ -16,7 +16,9 @@ public class Absence {
 	private long id_seance;
 	private long id_etudiant;
 	private Date created_at;
+	private int created_by;
 	private Date modified_at;
+	private int modified_by;
 	
 	
 	public Absence() {
@@ -31,6 +33,21 @@ public class Absence {
 		this.date_absence = date_absence;
 		this.id_seance = id_seance;
 		this.id_etudiant = id_etudiant;
+	}
+	
+	
+	public Absence(long id, String motif, Date date_absence, long id_seance, long id_etudiant, Date created_at,
+			int created_by, Date modified_at, int modified_by) {
+		super();
+		this.id = id;
+		this.motif = motif;
+		this.date_absence = date_absence;
+		this.id_seance = id_seance;
+		this.id_etudiant = id_etudiant;
+		this.created_at = created_at;
+		this.created_by = created_by;
+		this.modified_at = modified_at;
+		this.modified_by = modified_by;
 	}
 
 
@@ -101,6 +118,26 @@ public class Absence {
 
 	public void setModified_at(Date modified_at) {
 		this.modified_at = modified_at;
+	}
+
+
+	public int getModified_by() {
+		return modified_by;
+	}
+
+
+	public void setModified_by(int modified_by) {
+		this.modified_by = modified_by;
+	}
+
+
+	public int getCreated_by() {
+		return created_by;
+	}
+
+
+	public void setCreated_by(int created_by) {
+		this.created_by = created_by;
 	}
 	
 }

@@ -14,7 +14,9 @@ public class Module {
 	private String libelle_mobile;
 	private String description;
 	private Date created_at;
+	private int created_by;
 	private Date modified_at;
+	private int modified_by;
 	
 	public Module() {
 		super();
@@ -27,6 +29,19 @@ public class Module {
 		this.description = description;
 	}
 	
+	
+	public Module(long id, String libelle_mobile, String description, Date created_at, int created_by, Date modified_at,
+			int modified_by) {
+		super();
+		this.id = id;
+		this.libelle_mobile = libelle_mobile;
+		this.description = description;
+		this.created_at = created_at;
+		this.created_by = created_by;
+		this.modified_at = modified_at;
+		this.modified_by = modified_by;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -64,6 +79,22 @@ public class Module {
 	
 	public void setModified_at(Date modified_at) {
 		this.modified_at = modified_at;
+	}
+
+	public int getCreated_by() {
+		return created_by;
+	}
+
+	public void setCreated_by(int created_by) {
+		this.created_by = created_by;
+	}
+
+	public int getModified_by() {
+		return modified_by;
+	}
+
+	public void setModified_by(int modified_by) {
+		this.modified_by = modified_by;
 	}
 	
 }
