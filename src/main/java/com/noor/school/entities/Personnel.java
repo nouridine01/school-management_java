@@ -11,6 +11,7 @@ public class Personnel {
 	@Id
 	@GeneratedValue
 	private long id;
+	private String matricule;
 	private String nom;
 	private String prenom;
 	private String telephone;
@@ -28,9 +29,10 @@ public class Personnel {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Personnel(String nom, String prenom, String telephone, String email, String titre, String diplome,
+	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre, String diplome,
 			Date date_naissance) {
 		super();
+		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
@@ -151,6 +153,14 @@ public class Personnel {
 
 	public void setModified_by(int modified_by) {
 		this.modified_by = modified_by;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
 	}
 	
 	

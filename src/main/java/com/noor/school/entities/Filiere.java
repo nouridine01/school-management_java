@@ -13,7 +13,7 @@ public class Filiere implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id_filiere;
-	private String libelle_filiere;
+	private String libelle;
 	private Date created_at;
 	private int created_by;
 	private Date modified_at;
@@ -27,14 +27,14 @@ public class Filiere implements Serializable {
 	
 	public Filiere(String libelle_filiere) {
 		super();
-		this.libelle_filiere = libelle_filiere;
+		this.libelle = libelle_filiere;
 	}
 
 
 	public Filiere(long id, String libelle, Date created_at, Date modified_at) {
 		super();
 		this.id_filiere = id;
-		this.libelle_filiere = libelle;
+		this.libelle = libelle;
 		this.created_at = created_at;
 		this.modified_at = modified_at;
 	}
@@ -43,7 +43,7 @@ public class Filiere implements Serializable {
 			int modified_by) {
 		super();
 		this.id_filiere = id_filiere;
-		this.libelle_filiere = libelle_filiere;
+		this.libelle = libelle_filiere;
 		this.created_at = created_at;
 		this.created_by = created_by;
 		this.modified_at = modified_at;
@@ -60,11 +60,11 @@ public class Filiere implements Serializable {
 	}
 	
 	public String getLibelle() {
-		return libelle_filiere;
+		return libelle;
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle_filiere = libelle;
+		this.libelle = libelle;
 	}
 
 	public Date getCreated_at() {

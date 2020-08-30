@@ -6,5 +6,5 @@ import com.noor.school.entities.Etudiant;
 import com.noor.school.entities.User;
 
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
-	public User findByEmail(String email);
+	public Etudiant findByEmail(String email);
 }
