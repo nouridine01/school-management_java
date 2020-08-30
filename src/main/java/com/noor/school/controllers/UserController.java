@@ -3,7 +3,11 @@ package com.noor.school.controllers;
 
 import com.noor.school.entities.Role;
 import com.noor.school.entities.User;
+<<<<<<< HEAD
 import com.noor.school.repositories.RoleRepository;
+=======
+import com.noor.coronavirus.repositories.RoleRepository;
+>>>>>>> a170a8554b45b02a2acca66aed3f5aa8963f7698
 import com.noor.school.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
