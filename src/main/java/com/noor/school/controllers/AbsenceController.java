@@ -50,8 +50,8 @@ public class AbsenceController {
 
       return repository.findById(id)
         .map(absence -> {
-        	absence.setId_etudiant(newAbsence.getId_etudiant());
-        	absence.setId_seance(newAbsence.getId_seance());
+        	absence.setEtudiant(newAbsence.getEtudiant());
+        	absence.setSeance(newAbsence.getSeance());
           return repository.save(absence);
         })
         .orElseGet(() -> {

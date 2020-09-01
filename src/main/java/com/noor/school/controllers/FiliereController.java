@@ -54,7 +54,7 @@ public class FiliereController {
           return repository.save(filiere);
         })
         .orElseGet(() -> {
-          newFiliere.setId(id);
+          newFiliere.setId_filiere(id);
           return repository.save(newFiliere);
         });
     }

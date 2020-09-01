@@ -50,14 +50,9 @@ public class EnseignantController {
 
       return repository.findById(id)
         .map(enseignant -> {
-        	enseignant.setNom(newEnseignant.getNom());
-        	enseignant.setPrenom(newEnseignant.getPrenom());
-        	enseignant.setEmail(newEnseignant.getEmail());
-        	enseignant.setTelephone(newEnseignant.getTelephone());
-        	enseignant.setTitre(newEnseignant.getTitre());
-        	enseignant.setDate_naissance(newEnseignant.getDate_naissance());
-        	enseignant.setMatricule(newEnseignant.getMatricule());
-        	enseignant.setDiplome(newEnseignant.getDiplome());
+        	enseignant.setPersonnel(newEnseignant.getPersonnel());
+        	enseignant.setCode_enseignant(newEnseignant.getCode_enseignant());
+        	enseignant.setTitre_enseignant(newEnseignant.getTitre_enseignant());
           return repository.save(enseignant);
         })
         .orElseGet(() -> {

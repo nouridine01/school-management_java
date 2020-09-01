@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Absence {
@@ -13,12 +14,16 @@ public class Absence {
 	private long id;
 	private String motif;
 	private Date date_absence;
-	private long id_seance;
-	private long id_etudiant;
 	private Date created_at;
 	private int created_by;
 	private Date modified_at;
 	private int modified_by;
+	
+	@ManyToOne
+	private Etudiant etudiant;
+	
+	@ManyToOne
+	private Seance seance;
 	
 	
 	public Absence() {
@@ -27,27 +32,14 @@ public class Absence {
 	}
 
 
-	public Absence(String motif, Date date_absence, long id_seance, long id_etudiant) {
+	public Absence(String motif, Date date_absence, Date created_at, int created_by, Etudiant etudiant, Seance seance) {
 		super();
 		this.motif = motif;
 		this.date_absence = date_absence;
-		this.id_seance = id_seance;
-		this.id_etudiant = id_etudiant;
-	}
-	
-	
-	public Absence(long id, String motif, Date date_absence, long id_seance, long id_etudiant, Date created_at,
-			int created_by, Date modified_at, int modified_by) {
-		super();
-		this.id = id;
-		this.motif = motif;
-		this.date_absence = date_absence;
-		this.id_seance = id_seance;
-		this.id_etudiant = id_etudiant;
 		this.created_at = created_at;
 		this.created_by = created_by;
-		this.modified_at = modified_at;
-		this.modified_by = modified_by;
+		this.etudiant = etudiant;
+		this.seance = seance;
 	}
 
 
@@ -81,26 +73,6 @@ public class Absence {
 	}
 
 
-	public long getId_seance() {
-		return id_seance;
-	}
-
-
-	public void setId_seance(long id_seance) {
-		this.id_seance = id_seance;
-	}
-
-
-	public long getId_etudiant() {
-		return id_etudiant;
-	}
-
-
-	public void setId_etudiant(long id_etudiant) {
-		this.id_etudiant = id_etudiant;
-	}
-
-
 	public Date getCreated_at() {
 		return created_at;
 	}
@@ -108,6 +80,16 @@ public class Absence {
 
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
+	}
+
+
+	public int getCreated_by() {
+		return created_by;
+	}
+
+
+	public void setCreated_by(int created_by) {
+		this.created_by = created_by;
 	}
 
 
@@ -131,13 +113,24 @@ public class Absence {
 	}
 
 
-	public int getCreated_by() {
-		return created_by;
+	public Etudiant getEtudiant() {
+		return etudiant;
 	}
 
 
-	public void setCreated_by(int created_by) {
-		this.created_by = created_by;
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
 	}
+
+
+	public Seance getSeance() {
+		return seance;
+	}
+
+
+	public void setSeance(Seance seance) {
+		this.seance = seance;
+	}
+	
 	
 }

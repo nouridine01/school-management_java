@@ -1,11 +1,13 @@
 package com.noor.school.entities;
 
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Departement {
 	@Id
@@ -16,6 +18,14 @@ public class Departement {
 	private int created_by;
 	private Date modified_at;
 	private int modified_by;
+	
+	@OneToMany(mappedBy="departement")
+	private Collection <Filiere> filieres;
+	
+	@OneToMany(mappedBy="departement")
+	private Collection <Personnel> personnels;
+	
+	
 	
 	public Departement() {
 		super();
@@ -29,40 +39,27 @@ public class Departement {
 
 
 
-	public Departement(long id, String libelle, Date created_at, Date modified_at) {
+	public Departement(String libelle, Date created_at, Date modified_at) {
 		super();
-		this.id_departement = id;
 		this.libelle_departement = libelle;
 		this.created_at = created_at;
 		this.modified_at = modified_at;
 	}
-	
-	
-	public Departement(long id_departement, String libelle_departement, Date created_at, int created_by,
-			Date modified_at, int modified_by) {
-		super();
-		this.id_departement = id_departement;
-		this.libelle_departement = libelle_departement;
-		this.created_at = created_at;
-		this.created_by = created_by;
-		this.modified_at = modified_at;
-		this.modified_by = modified_by;
-	}
 
-	public long getId() {
+	public long getId_departement() {
 		return id_departement;
 	}
 
-	public void setId(long id) {
-		this.id_departement = id;
+	public void setId_departement(long id_departement) {
+		this.id_departement = id_departement;
 	}
-	
-	public String getLibelle() {
+
+	public String getLibelle_departement() {
 		return libelle_departement;
 	}
 
-	public void setLibelle(String libelle) {
-		this.libelle_departement = libelle;
+	public void setLibelle_departement(String libelle_departement) {
+		this.libelle_departement = libelle_departement;
 	}
 
 	public Date getCreated_at() {
@@ -73,20 +70,20 @@ public class Departement {
 		this.created_at = created_at;
 	}
 
-	public Date getModified_at() {
-		return modified_at;
-	}
-
-	public void setModified_at(Date modified_at) {
-		this.modified_at = modified_at;
-	}
-
 	public int getCreated_by() {
 		return created_by;
 	}
 
 	public void setCreated_by(int created_by) {
 		this.created_by = created_by;
+	}
+
+	public Date getModified_at() {
+		return modified_at;
+	}
+
+	public void setModified_at(Date modified_at) {
+		this.modified_at = modified_at;
 	}
 
 	public int getModified_by() {
@@ -96,6 +93,21 @@ public class Departement {
 	public void setModified_by(int modified_by) {
 		this.modified_by = modified_by;
 	}
-	
+
+	public Collection<Filiere> getFilieres() {
+		return filieres;
+	}
+
+	public void setFilieres(Collection<Filiere> filieres) {
+		this.filieres = filieres;
+	}
+
+	public Collection<Personnel> getPersonnels() {
+		return personnels;
+	}
+
+	public void setPersonnels(Collection<Personnel> personnels) {
+		this.personnels = personnels;
+	}
 	
 }

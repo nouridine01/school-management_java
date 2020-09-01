@@ -1,10 +1,13 @@
 package com.noor.school.entities;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class UniteEnseignement {
@@ -19,34 +22,33 @@ public class UniteEnseignement {
 	private Date modified_at;
 	private int modified_by;
 	
+	@OneToMany(mappedBy="unite_enseignement")
+	private Collection <Module> modules;
+	
+	@ManyToOne
+	private Semestre semestre;
 	
 	public UniteEnseignement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UniteEnseignement(String libelle) {
+	public UniteEnseignement(String libelle, String description, String code_ue) {
 		super();
 		this.libelle = libelle;
-	}
-
-	public UniteEnseignement(String libelle, String code_ue) {
-		super();
-		this.libelle = libelle;
+		this.description = description;
 		this.code_ue = code_ue;
 	}
 
-	public UniteEnseignement(long id, String libelle, String description, String code_ue, Date created_at,
-			int created_by, Date modified_at, int modified_by) {
+	public UniteEnseignement(String libelle, String description, String code_ue, Date created_at, int created_by,
+			Semestre semestre) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 		this.description = description;
 		this.code_ue = code_ue;
 		this.created_at = created_at;
 		this.created_by = created_by;
-		this.modified_at = modified_at;
-		this.modified_by = modified_by;
+		this.semestre = semestre;
 	}
 
 	public long getId() {
@@ -89,20 +91,20 @@ public class UniteEnseignement {
 		this.created_at = created_at;
 	}
 
-	public Date getModified_at() {
-		return modified_at;
-	}
-
-	public void setModified_at(Date modified_at) {
-		this.modified_at = modified_at;
-	}
-
 	public int getCreated_by() {
 		return created_by;
 	}
 
 	public void setCreated_by(int created_by) {
 		this.created_by = created_by;
+	}
+
+	public Date getModified_at() {
+		return modified_at;
+	}
+
+	public void setModified_at(Date modified_at) {
+		this.modified_at = modified_at;
 	}
 
 	public int getModified_by() {
@@ -112,8 +114,23 @@ public class UniteEnseignement {
 	public void setModified_by(int modified_by) {
 		this.modified_by = modified_by;
 	}
-	
-	
+
+	public Collection<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(Collection<Module> modules) {
+		this.modules = modules;
+	}
+
+	public Semestre getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(Semestre semestre) {
+		this.semestre = semestre;
+	}
+
 	
 	
 }

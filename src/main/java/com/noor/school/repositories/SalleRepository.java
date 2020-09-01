@@ -9,5 +9,4 @@ import com.noor.school.entities.Salle;
 @CrossOrigin("*")
 @RepositoryRestController
 public interface SalleRepository extends JpaRepository<Salle,Long> {
-    public Salle findByLibelle(String libelle);
 }

@@ -50,11 +50,11 @@ public class ClasseController {
 
       return repository.findById(id)
         .map(classe -> {
-        	classe.setLibelle(newClasse.getLibelle());
+        	classe.setLibelle_classe(newClasse.getLibelle_classe());
           return repository.save(classe);
         })
         .orElseGet(() -> {
-          newClasse.setId(id);
+          newClasse.setId_classe(id);
           return repository.save(newClasse);
         });
     }

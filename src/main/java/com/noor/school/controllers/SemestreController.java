@@ -21,60 +21,58 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.noor.school.entities.Salle;
-import com.noor.school.repositories.SalleRepository;
+import com.noor.school.entities.Semestre;
+import com.noor.school.repositories.SemestreRepository;
 
-import com.noor.school.exceptions.SalleNotFoundException;
+import com.noor.school.exceptions.SemestreNotFoundException;
 
 @CrossOrigin("*")
 @RestController
-public class SalleController {
-	SalleRepository repository;
+public class SemestreController {
+	SemestreRepository repository;
 
-    public SalleController(SalleRepository SalleRepository) {
-        this.repository=SalleRepository;
+    public SemestreController(SemestreRepository semestreRepository) {
+        this.repository=semestreRepository;
     }
 
 
 
-    @GetMapping("/salles")
-    List<Salle> all() {
+    @GetMapping("/semestres")
+    List<Semestre> all() {
       return repository.findAll();
     }
 
-    @PostMapping("/salles")
-    Salle newSalle(@RequestBody Salle newSalle) {
-      return repository.save(newSalle);
+    @PostMapping("/semestres")
+    Semestre newSemestre(@RequestBody Semestre newSemestre) {
+      return repository.save(newSemestre);
     }
 
     // Single item
 
-    @GetMapping("/salles/{id}")
-    Salle one(@PathVariable Long id) {
+    @GetMapping("/semestres/{id}")
+    Semestre one(@PathVariable Long id) {
 
       return repository.findById(id)
-        .orElseThrow(() -> new SalleNotFoundException(id));
+        .orElseThrow(() -> new SemestreNotFoundException(id));
     }
 
-    @PutMapping("/salles/{id}")
-    Salle replaceSalle(@RequestBody Salle newSalle, @PathVariable Long id) {
+    @PutMapping("/semestres/{id}")
+    Semestre replaceSemestre(@RequestBody Semestre newSemestre, @PathVariable Long id) {
 
       return repository.findById(id)
-        .map(salle -> {
-        	salle.setLibelle_salle(newSalle.getLibelle_salle());
-        	salle.setDescription(newSalle.getDescription());
-        	salle.setDimension(newSalle.getDimension());
-        	salle.setCapacite(newSalle.getCapacite());
-          return repository.save(salle);
+        .map(semestre -> {
+        	semestre.setNumero_semestre(newSemestre.getNumero_semestre());
+        	semestre.setLibelle_semestre(newSemestre.getLibelle_semestre());
+          return repository.save(semestre);
         })
         .orElseGet(() -> {
-          newSalle.setId(id);
-          return repository.save(newSalle);
+          newSemestre.setId(id);
+          return repository.save(newSemestre);
         });
     }
 
-    @DeleteMapping("/salles/{id}")
-    void deleteSalle(@PathVariable Long id) {
+    @DeleteMapping("/semestres/{id}")
+    void deleteSemestre(@PathVariable Long id) {
       repository.deleteById(id);
     }
 }
