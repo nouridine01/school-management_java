@@ -5,16 +5,19 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Filiere implements Serializable {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id_filiere;
 	private String libelle;
 	private Date created_at;
@@ -32,6 +35,21 @@ public class Filiere implements Serializable {
 	
 	@OneToMany(mappedBy="filiere")
 	private Collection<Classe> classes;
+	
+	@OneToOne(fetch=FetchType.LAZY, mappedBy="filiere")
+	private Programme programme;
+	
+	public Programme getProgramme() {
+		return programme;
+	}
+
+	public void setProgramme(Programme programme) {
+		this.programme = programme;
+	}
+	public Filiere(String libelle) {
+		super();
+		this.libelle = libelle;
+	}
 
 	public Filiere(String libelle, Date created_at, int created_by, Departement departement) {
 		super();

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Role{
@@ -14,23 +15,13 @@ public class Role{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String role;
+    @ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
-
 	
-    
-    public Role(long id, String role, Date created_at, int created_by, Date modified_at, int modified_by) {
-		super();
-		this.id = id;
-		this.role = role;
-		this.created_at = created_at;
-		this.created_by = created_by;
-		this.modified_at = modified_at;
-		this.modified_by = modified_by;
-	}
-
 	//getters
     public long getId(){
         return this.id;
@@ -58,11 +49,11 @@ public class Role{
  		this.created_at = created_at;
  	}
 
- 	public int getCreated_by() {
+ 	public User getCreated_by() {
  		return created_by;
  	}
 
- 	public void setCreated_by(int created_by) {
+ 	public void setCreated_by(User created_by) {
  		this.created_by = created_by;
  	}
 
@@ -74,11 +65,11 @@ public class Role{
  		this.modified_at = modified_at;
  	}
 
- 	public int getModified_by() {
+ 	public User getModified_by() {
  		return modified_by;
  	}
 
- 	public void setModified_by(int modified_by) {
+ 	public void setModified_by(User modified_by) {
  		this.modified_by = modified_by;
  	}
 

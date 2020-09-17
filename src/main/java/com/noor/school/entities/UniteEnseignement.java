@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,15 +13,19 @@ import javax.persistence.OneToMany;
 @Entity
 public class UniteEnseignement {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String libelle;
 	private String description;
 	private String code_ue;
+	
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@OneToMany(mappedBy="unite_enseignement")
 	private Collection <Module> modules;
@@ -28,6 +33,19 @@ public class UniteEnseignement {
 	@ManyToOne
 	private Semestre semestre;
 	
+	@ManyToOne
+	private Programme programme;
+	
+	
+	
+	public Programme getProgramme() {
+		return programme;
+	}
+
+	public void setProgramme(Programme programme) {
+		this.programme = programme;
+	}
+
 	public UniteEnseignement() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -40,7 +58,7 @@ public class UniteEnseignement {
 		this.code_ue = code_ue;
 	}
 
-	public UniteEnseignement(String libelle, String description, String code_ue, Date created_at, int created_by,
+	public UniteEnseignement(String libelle, String description, String code_ue, Date created_at, User created_by,
 			Semestre semestre) {
 		super();
 		this.libelle = libelle;
@@ -91,11 +109,11 @@ public class UniteEnseignement {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -107,11 +125,11 @@ public class UniteEnseignement {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

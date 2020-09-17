@@ -4,20 +4,23 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Absence {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String motif;
 	private Date date_absence;
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private Etudiant etudiant;
@@ -32,7 +35,7 @@ public class Absence {
 	}
 
 
-	public Absence(String motif, Date date_absence, Date created_at, int created_by, Etudiant etudiant, Seance seance) {
+	public Absence(String motif, Date date_absence, Date created_at, User created_by, Etudiant etudiant, Seance seance) {
 		super();
 		this.motif = motif;
 		this.date_absence = date_absence;
@@ -83,12 +86,12 @@ public class Absence {
 	}
 
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -103,12 +106,12 @@ public class Absence {
 	}
 
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

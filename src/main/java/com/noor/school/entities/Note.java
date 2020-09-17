@@ -4,21 +4,25 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Note {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private double note;
 	private int coefficient = 1;
 	private String commentaire;
+
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private Enseignant enseignant ;
@@ -29,6 +33,9 @@ public class Note {
 	@ManyToOne
 	private Etudiant etudiant ;
 	
+	@ManyToOne
+	private Bulletin bulletin ;
+	
 	
 	public Note() {
 		super();
@@ -36,7 +43,7 @@ public class Note {
 	}
 	
 
-	public Note(double note, String commentaire, Date created_at, int created_by, Enseignant enseignant,
+	public Note(double note, String commentaire, Date created_at, User created_by, Enseignant enseignant,
 			com.noor.school.entities.Module module, Etudiant etudiant) {
 		super();
 		this.note = note;
@@ -107,12 +114,12 @@ public class Note {
 	}
 
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -127,12 +134,12 @@ public class Note {
 	}
 
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 
@@ -167,6 +174,13 @@ public class Note {
 	}
 
 
+	public Bulletin getBulletin() {
+		return bulletin;
+	}
+
+
+	public void setBulletin(Bulletin bulletin) {
+		this.bulletin = bulletin;
+	}
 		
-	
 }

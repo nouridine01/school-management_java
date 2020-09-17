@@ -6,18 +6,24 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
 public class Departement {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id_departement;
-	private String libelle_departement;
+	private String codeDepartement;
+	private String libelleDepartement;
+
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@OneToMany(mappedBy="departement")
 	private Collection <Filiere> filieres;
@@ -34,17 +40,9 @@ public class Departement {
 	
 	public Departement(String libelle_departement) {
 		super();
-		this.libelle_departement = libelle_departement;
+		this.libelleDepartement = libelle_departement;
 	}
 
-
-
-	public Departement(String libelle, Date created_at, Date modified_at) {
-		super();
-		this.libelle_departement = libelle;
-		this.created_at = created_at;
-		this.modified_at = modified_at;
-	}
 
 	public long getId_departement() {
 		return id_departement;
@@ -55,26 +53,26 @@ public class Departement {
 	}
 
 	public String getLibelle_departement() {
-		return libelle_departement;
+		return libelleDepartement;
 	}
 
 	public void setLibelle_departement(String libelle_departement) {
-		this.libelle_departement = libelle_departement;
+		this.libelleDepartement = libelle_departement;
 	}
 
 	public Date getCreated_at() {
-		return created_at;
+		return this.created_at;
 	}
 
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -86,11 +84,11 @@ public class Departement {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 
@@ -108,6 +106,14 @@ public class Departement {
 
 	public void setPersonnels(Collection<Personnel> personnels) {
 		this.personnels = personnels;
+	}
+
+	public String getCodeSalle() {
+		return codeDepartement;
+	}
+
+	public void setCodeSalle(String codeSalle) {
+		this.codeDepartement = codeSalle;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -13,15 +14,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class Module {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String libelle_module;
 	private String code_module;
 	private String description;
+
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private UniteEnseignement unite_enseignement;
@@ -29,14 +33,12 @@ public class Module {
 	@OneToMany(mappedBy = "module")
 	private Collection<Seance> seances;
 	
-	
-	
 	public Module() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Module(String libelle_mobile, String code_module, String description, Date created_at, int created_by,
+	public Module(String libelle_mobile, String code_module, String description, Date created_at, User created_by,
 			UniteEnseignement unite_enseignement) {
 		super();
 		this.libelle_module = libelle_mobile;
@@ -53,7 +55,7 @@ public class Module {
 		this.unite_enseignement = unite_enseignement;
 	}
 
-	public Module(String libelle_mobile, String code_module, String description, Date created_at, int created_by,
+	public Module(String libelle_mobile, String code_module, String description, Date created_at, User created_by,
 			UniteEnseignement unite_enseignement, Collection<Seance> seances) {
 		super();
 		this.libelle_module = libelle_mobile;
@@ -107,11 +109,11 @@ public class Module {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -123,11 +125,11 @@ public class Module {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

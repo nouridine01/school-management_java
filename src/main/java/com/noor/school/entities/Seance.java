@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,16 +13,19 @@ import javax.persistence.OneToMany;
 @Entity
 public class Seance {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String libelle;
 	private String description;
 	private String heure_debut;
 	private String heure_fin;
+	
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private Module module;
@@ -40,6 +44,9 @@ public class Seance {
 	
 	@OneToMany(mappedBy = "seance")
 	private Collection<Absence> absences;
+	
+	@ManyToOne
+	private Edt edt;
 
 	public Seance() {
 		super();
@@ -47,7 +54,7 @@ public class Seance {
 	}
 
 	public Seance(String libelle, String description, String heure_debut, String heure_fin, Date created_at,
-			int created_by, Module module, Semaine semaine, Salle salle, Classe classe, Enseignant enseignant) {
+			User created_by, Module module, Semaine semaine, Salle salle, Classe classe, Enseignant enseignant) {
 		super();
 		this.libelle = libelle;
 		this.description = description;
@@ -121,11 +128,11 @@ public class Seance {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -137,11 +144,11 @@ public class Seance {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 
@@ -192,7 +199,13 @@ public class Seance {
 	public void setAbsences(Collection<Absence> absences) {
 		this.absences = absences;
 	}
-	
-	
+
+	public Edt getEdt() {
+		return edt;
+	}
+
+	public void setEdt(Edt edt) {
+		this.edt = edt;
+	}
 	
 }

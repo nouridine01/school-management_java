@@ -29,52 +29,52 @@ import com.noor.school.exceptions.SalleNotFoundException;
 @CrossOrigin("*")
 @RestController
 public class SalleController {
-	SalleRepository repository;
-
-    public SalleController(SalleRepository SalleRepository) {
-        this.repository=SalleRepository;
-    }
-
-
-
-    @GetMapping("/salles")
-    List<Salle> all() {
-      return repository.findAll();
-    }
-
-    @PostMapping("/salles")
-    Salle newSalle(@RequestBody Salle newSalle) {
-      return repository.save(newSalle);
-    }
-
-    // Single item
-
-    @GetMapping("/salles/{id}")
-    Salle one(@PathVariable Long id) {
-
-      return repository.findById(id)
-        .orElseThrow(() -> new SalleNotFoundException(id));
-    }
-
-    @PutMapping("/salles/{id}")
-    Salle replaceSalle(@RequestBody Salle newSalle, @PathVariable Long id) {
-
-      return repository.findById(id)
-        .map(salle -> {
-        	salle.setLibelle_salle(newSalle.getLibelle_salle());
-        	salle.setDescription(newSalle.getDescription());
-        	salle.setDimension(newSalle.getDimension());
-        	salle.setCapacite(newSalle.getCapacite());
-          return repository.save(salle);
-        })
-        .orElseGet(() -> {
-          newSalle.setId(id);
-          return repository.save(newSalle);
-        });
-    }
-
-    @DeleteMapping("/salles/{id}")
-    void deleteSalle(@PathVariable Long id) {
-      repository.deleteById(id);
-    }
+//	SalleRepository repository;
+//
+//    public SalleController(SalleRepository SalleRepository) {
+//        this.repository=SalleRepository;
+//    }
+//
+//
+//
+//    @GetMapping("/salles")
+//    List<Salle> all() {
+//      return repository.findAll();
+//    }
+//
+//    @PostMapping("/salles")
+//    Salle newSalle(@RequestBody Salle newSalle) {
+//      return repository.save(newSalle);
+//    }
+//
+//    // Single item
+//
+//    @GetMapping("/salles/{id}")
+//    Salle one(@PathVariable Long id) {
+//
+//      return repository.findById(id)
+//        .orElseThrow(() -> new SalleNotFoundException(id));
+//    }
+//
+//    @PutMapping("/salles/{id}")
+//    Salle replaceSalle(@RequestBody Salle newSalle, @PathVariable Long id) {
+//
+//      return repository.findById(id)
+//        .map(salle -> {
+//        	salle.setLibelle_salle(newSalle.getLibelle_salle());
+//        	salle.setDescription(newSalle.getDescription());
+//        	salle.setDimension(newSalle.getDimension());
+//        	salle.setCapacite(newSalle.getCapacite());
+//          return repository.save(salle);
+//        })
+//        .orElseGet(() -> {
+//          newSalle.setId(id);
+//          return repository.save(newSalle);
+//        });
+//    }
+//
+//    @DeleteMapping("/salles/{id}")
+//    void deleteSalle(@PathVariable Long id) {
+//      repository.deleteById(id);
+//    }
 }

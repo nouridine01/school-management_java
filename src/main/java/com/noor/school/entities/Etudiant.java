@@ -5,27 +5,35 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Etudiant {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String matricule;
 	private String nom;
 	private String prenom;
 	private String telephone;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+	        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+	             message="{invalid.email}")
 	private String email;
 	private String titre;
 	private String diplome;
 	private Date date_naissance;
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private Classe classe;
@@ -35,6 +43,12 @@ public class Etudiant {
 	
 	@OneToMany(mappedBy="etudiant")
 	private Collection<Note> notes;
+	
+	@ManyToOne
+	private Scolarite scolarite;
+	
+	@OneToMany(mappedBy="etudiant")
+	private Collection<Bulletin> bulletins;
 
 	public Etudiant() {
 		super();
@@ -157,11 +171,11 @@ public class Etudiant {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -173,11 +187,11 @@ public class Etudiant {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

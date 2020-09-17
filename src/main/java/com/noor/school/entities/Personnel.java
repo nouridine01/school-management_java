@@ -1,33 +1,50 @@
 package com.noor.school.entities;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 
 @Entity
 public class Personnel {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String matricule;
 	private String nom;
 	private String prenom;
+	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$",
+            message="{invalid.telephone}")
 	private String telephone;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+	        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+	             message="{invalid.email}")
 	private String email;
 	private String titre;
 	private String diplome;
 	private Date date_naissance;
+	@ManyToOne @Null
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne @Null
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@ManyToOne
 	private Departement departement;
 	
+	
+	@OneToMany(mappedBy="personnel")
+	private Collection<Enseignant> enseignants;
 	
 	public Personnel() {
 		super();
@@ -47,6 +64,18 @@ public class Personnel {
 		this.diplome = diplome;
 		this.date_naissance = date_naissance;
 		this.departement = departement;
+	}
+	
+	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre,
+			String diplome) {
+		super();
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.email = email;
+		this.titre = titre;
+		this.diplome = diplome;
 	}
 
 
@@ -160,12 +189,12 @@ public class Personnel {
 	}
 
 
-	public int getCreated_by() {
-		return created_by;
+	public User getCreated_by() {
+		return this.created_by;
 	}
 
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -180,12 +209,12 @@ public class Personnel {
 	}
 
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

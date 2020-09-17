@@ -15,10 +15,12 @@ public class Classe {
 	@GeneratedValue
 	private long id_classe;
 	private String libelle_classe;
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@OneToMany(mappedBy="classe")
 	private Collection<Etudiant> etudiants;
@@ -80,12 +82,12 @@ public class Classe {
 	}
 
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -100,12 +102,12 @@ public class Classe {
 	}
 
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,15 +13,19 @@ import javax.persistence.OneToMany;
 @Entity
 public class Semestre {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private int numero_semestre;
 	private String code_semestre;
 	private String libelle_semestre;
+	
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
 	
 	@OneToMany(mappedBy="semestre")
 	private Collection <UniteEnseignement> uniteEnseignements;
@@ -32,16 +37,13 @@ public class Semestre {
 	@ManyToOne
 	private Filiere filiere;
 	
-	
-
+	@ManyToOne
+	private Programme programme;
 
 	public Semestre() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 	public Semestre(int numero_semestre, String code_semestre, String libelle_semestre) {
 		super();
@@ -51,10 +53,8 @@ public class Semestre {
 	}
 
 
-
-
 	public Semestre(int numero_semestre, String code_semestre, String libelle_semestre, Date created_at,
-			int created_by) {
+			User created_by) {
 		super();
 		this.numero_semestre = numero_semestre;
 		this.code_semestre = code_semestre;
@@ -62,9 +62,6 @@ public class Semestre {
 		this.created_at = created_at;
 		this.created_by = created_by;
 	}
-
-
-
 
 	public long getId() {
 		return id;
@@ -136,14 +133,14 @@ public class Semestre {
 
 
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
 
 
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -164,14 +161,14 @@ public class Semestre {
 
 
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
 
 
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 
@@ -216,8 +213,14 @@ public class Semestre {
 	public void setFiliere(Filiere filiere) {
 		this.filiere = filiere;
 	}
-	
-	
+
+	public Programme getProgramme() {
+		return programme;
+	}
+
+	public void setProgramme(Programme programme) {
+		this.programme = programme;
+	}
 	
 	
 }

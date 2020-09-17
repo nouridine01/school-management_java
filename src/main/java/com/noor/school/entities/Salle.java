@@ -5,46 +5,48 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.sun.istack.NotNull;
+
 @Entity
 public class Salle {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NotNull
 	private String libelle_salle;
+	@NotNull
 	private String code_salle;
 	private String description;
 	private String dimension;
 	private String capacite;
+
+	@ManyToOne
+	private User created_by;
 	private Date created_at;
-	private int created_by;
+	@ManyToOne
+	private User modified_by;
 	private Date modified_at;
-	private int modified_by;
-	
-	@OneToMany(mappedBy="salle")
-	private Collection <Seance> seances;
 	
 	public Salle() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Salle(String libelle_salle, String code_salle, String description, String dimension, String capacite,
-			Date created_at, int created_by) {
+	public Salle(String libelle_salle, String code_salle, String description, String dimension, String capacite) {
 		super();
 		this.libelle_salle = libelle_salle;
 		this.code_salle = code_salle;
 		this.description = description;
 		this.dimension = dimension;
 		this.capacite = capacite;
-		this.created_at = created_at;
-		this.created_by = created_by;
 	}
 
-	public Salle(String libelle_salle, String code_salle, Date created_at, int created_by) {
+	public Salle(String libelle_salle, String code_salle, Date created_at, User created_by) {
 		super();
 		this.libelle_salle = libelle_salle;
 		this.code_salle = code_salle;
@@ -114,11 +116,11 @@ public class Salle {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
+	public User getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(int created_by) {
+	public void setCreated_by(User created_by) {
 		this.created_by = created_by;
 	}
 
@@ -130,20 +132,20 @@ public class Salle {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 
-	public Collection<Seance> getSeances() {
-		return seances;
-	}
-
-	public void setSeances(Collection<Seance> seances) {
-		this.seances = seances;
-	}
+//	public Collection<Seance> getSeances() {
+//		return seances;
+//	}
+//
+//	public void setSeances(Collection<Seance> seances) {
+//		this.seances = seances;
+//	}
 
 }
