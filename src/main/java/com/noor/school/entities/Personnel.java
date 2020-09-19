@@ -43,8 +43,8 @@ public class Personnel {
 	private Departement departement;
 	
 	
-	@OneToMany(mappedBy="personnel")
-	private Collection<Enseignant> enseignants;
+	@ManyToOne
+	private Fonction fonction;
 	
 	public Personnel() {
 		super();
@@ -67,6 +67,19 @@ public class Personnel {
 	}
 	
 	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre,
+			String diplome, Fonction fonction) {
+		super();
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telephone = telephone;
+		this.email = email;
+		this.titre = titre;
+		this.diplome = diplome;
+		this.fonction = fonction;
+	}
+	
+	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre,
 			String diplome) {
 		super();
 		this.matricule = matricule;
@@ -86,6 +99,15 @@ public class Personnel {
 		this.telephone = telephone;
 		this.email = email;
 		this.departement = departement;
+	}
+
+	public Fonction getFonction() {
+		return fonction;
+	}
+
+
+	public void setFonction(Fonction fonction) {
+		this.fonction = fonction;
 	}
 
 

@@ -9,6 +9,6 @@ import com.noor.school.entities.Fonction;
 
 @CrossOrigin("*")
 @RepositoryRestResource
-public interface FunctionRepository extends JpaRepository<Fonction, Long>{
+public interface FonctionRepository extends JpaRepository<Fonction, Long>{
 	
 }
