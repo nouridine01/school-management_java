@@ -1,42 +1,58 @@
 package com.noor.school.sec;
 
 
-//
-//import javax.sql.DataSource;
-//
-//import org.apache.tomcat.util.security.MD5Encoder;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-//import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//
-//@Configuration
-//@EnableWebSecurity
-public class SecurityConfig {
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-//	@Autowired
-//	private DataSource dataSource;
-//	PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-//		auth.jdbcAuthentication()
-//			.dataSource(dataSource)
-//			.usersByUsernameQuery("select login as principal, password as credentials, active from user where login=?")
-//			.authoritiesByUsernameQuery("select login as principal, role as role from user_roles, user, role where user.id=user_roles.user_id AND role.id=user_roles.roles_id AND login=?")
-//			//passwordEncoder.setDefaultPasswordEncoderForMatches(new MessageDigestPasswordEncoder("MD5"))
-//			.passwordEncoder(new MessageDigestPasswordEncoder("MD5"))
-//			.rolePrefix("ROLE_");
-//	}
-//	
-//	
-//	protected void configure(HttpSecurity http) throws Exception{
-//		http.formLogin();
-//		http.authorizeRequests().antMatchers("/user/*").hasRole("USER");
-//		//http.authorizeRequests().antMatchers("/etudiants").hasRole("ADMIN");
-//		http.exceptionHandling().accessDeniedPage("/403");
-//	}
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	
+	/*private DataSource dataSource;
+	PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();*/
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+		/*jdbcAuthentication()
+			.dataSource(dataSource)
+			.usersByUsernameQuery("select login as principal, password as credentials, active from user where login=?")
+			.authoritiesByUsernameQuery("select login as principal, roles as role from user_roles where login=?")
+			//passwordEncoder.setDefaultPasswordEncoderForMatches(new MessageDigestPasswordEncoder("MD5"))
+			.passwordEncoder(new MessageDigestPasswordEncoder("MD5"))
+			.rolePrefix("ROLE_");*/
+	}
+	
+	
+	protected void configure(HttpSecurity http) throws Exception{
+		http.csrf().disable();
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
+		http.authorizeRequests().antMatchers("/users/**","/roles/**").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/scolarite/**").hasAuthority("ADMIN");
+		http.authorizeRequests().anyRequest().authenticated();
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+		/*	
+		http.authorizeRequests().antMatchers("/etudiants").hasRole("ADMIN");
+		http.exceptionHandling().accessDeniedPage("/403");
+		*/
+	}
 }

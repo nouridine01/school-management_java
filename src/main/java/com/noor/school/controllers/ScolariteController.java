@@ -36,21 +36,21 @@ public class ScolariteController {
       return repository.findAll();
     }
 
-    @PostMapping("/scolarites")
+    @PostMapping("/scolarite")
     Scolarite newScolarite(@RequestBody Scolarite newScolarite) {
       return repository.save(newScolarite);
     }
 
     // Single item
 
-    @GetMapping("/scolarites/{id}")
+    @GetMapping("/scolarite/{id}")
     Scolarite one(@PathVariable Long id) {
 
       return repository.findById(id)
         .orElseThrow(() -> new ScolariteNotFoundException(id));
     }
 
-    @PutMapping("/scolarites/{id}")
+    @PutMapping("/scolarite/{id}")
     Scolarite replaceScolarite(@RequestBody Scolarite newScolarite, @PathVariable Long id) {
 
       return repository.findById(id)
@@ -68,7 +68,7 @@ public class ScolariteController {
         });
     }
 
-    @DeleteMapping("/scolarites/{id}")
+    @DeleteMapping("/scolarite/{id}")
     void deleteScolarite(@PathVariable Long id) {
       repository.deleteById(id);
     }

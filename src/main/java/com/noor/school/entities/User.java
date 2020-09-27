@@ -1,22 +1,31 @@
 package com.noor.school.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/*import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;*/
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@Data @AllArgsConstructor @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @NotEmpty
+    @Column(unique=true)
     private String login;
-    @NotEmpty
-    @Size(min = 8)
+    @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String pays;
 	private Date created_at;
@@ -25,7 +34,9 @@ public class User {
 	private int modified_by;
 
 
-    public String getPays() {
+   
+
+	public String getPays() {
         return pays;
     }
 
@@ -43,7 +54,27 @@ public class User {
     private String photo;
 
 
-    public Collection<Role> getRoles() {
+    
+    
+    public User(String login, String password, String pays, String lastName, String firstName,
+			String photo) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.pays = pays;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.photo = photo;
+	}
+
+	
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<Role> getRoles() {
         return roles;
     }
 
@@ -61,7 +92,7 @@ public class User {
 
 
     //getters
-    public long getId(){
+    public Long getId(){
         return this.id;
     }
 
@@ -82,7 +113,7 @@ public class User {
     }
 
     //setters
-    public void setId(long id){
+    public void setId(Long id){
         this.id=id;
     }
 

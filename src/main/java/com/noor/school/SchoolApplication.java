@@ -77,10 +77,10 @@ public class SchoolApplication  {
 }
 //=======
 //
-//	@Bean
-//	public BCryptPasswordEncoder getEncoder(){
-//		return new BCryptPasswordEncoder();
-//	}
+	@Bean
+	public BCryptPasswordEncoder getEncoder(){
+		return new BCryptPasswordEncoder();
+	}
 //
 //	@Override
 //	public void run(String... args) throws Exception {

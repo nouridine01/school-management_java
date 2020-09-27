@@ -8,7 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Role{
 
     @Id
@@ -22,6 +27,45 @@ public class Role{
 	private User modified_by;
 	private Date modified_at;
 	
+	
+	
+	public Role() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Role(long id, String role) {
+		super();
+		this.id = id;
+		this.role = role;
+	}
+	
+	
+	
+	public Role(long id, String role, User created_by, User modified_by) {
+		super();
+		this.id = id;
+		this.role = role;
+		this.created_by = created_by;
+		this.modified_by = modified_by;
+	}
+
+
+
+	public Role(long id, String role, User created_by, Date created_at, User modified_by, Date modified_at) {
+		super();
+		this.id = id;
+		this.role = role;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+	}
+
+
+
 	//getters
     public long getId(){
         return this.id;
