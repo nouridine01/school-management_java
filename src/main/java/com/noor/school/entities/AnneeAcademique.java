@@ -16,7 +16,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
 public class AnneeAcademique implements Serializable{
 
 	@Id
@@ -34,6 +33,27 @@ public class AnneeAcademique implements Serializable{
 	
 	@OneToMany(mappedBy="annee_acad")
 	private Collection<Programme> programme;
+	
+	
+	
+
+	public AnneeAcademique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public AnneeAcademique(String libelle_annee_acad, Date debut_annee_acad, Date fin_annee_acad, User created_by,
+			Date created_at, User modified_by, Date modified_at) {
+		super();
+		this.libelle_annee_acad = libelle_annee_acad;
+		this.debut_annee_acad = debut_annee_acad;
+		this.fin_annee_acad = fin_annee_acad;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		
+	}
 
 	public long getId() {
 		return id;

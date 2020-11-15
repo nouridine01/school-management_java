@@ -38,6 +38,18 @@ public class Departement {
 		// TODO Auto-generated constructor stub
 	}	
 	
+	public Departement(String codeDepartement, String libelleDepartement, User created_by, Date created_at,
+			User modified_by, Date modified_at) {
+		super();
+		this.codeDepartement = codeDepartement;
+		this.libelleDepartement = libelleDepartement;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		
+	}
+
 	public Departement(String libelle_departement) {
 		super();
 		this.libelleDepartement = libelle_departement;
@@ -108,12 +120,5 @@ public class Departement {
 		this.personnels = personnels;
 	}
 
-	public String getCodeSalle() {
-		return codeDepartement;
-	}
-
-	public void setCodeSalle(String codeSalle) {
-		this.codeDepartement = codeSalle;
-	}
 	
 }

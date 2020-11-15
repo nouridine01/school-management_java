@@ -16,7 +16,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor 
 public class Scolarite implements Serializable{
 
 	@Id
@@ -36,6 +35,26 @@ public class Scolarite implements Serializable{
 	
 	@OneToMany(mappedBy="scolarite")
 	private Collection<Etudiant> etudiant;
+
+
+	public Scolarite() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Scolarite(String libelle_scolarite, Date date_debut_paiement_scolarite, Date date_fin_paiement_scolarite,
+			Double somme, User created_by, Date created_at, User modified_by, Date modified_at) {
+		super();
+		this.libelle_scolarite = libelle_scolarite;
+		this.date_debut_paiement_scolarite = date_debut_paiement_scolarite;
+		this.date_fin_paiement_scolarite = date_fin_paiement_scolarite;
+		this.somme = somme;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+	}
 
 
 	public long getId() {

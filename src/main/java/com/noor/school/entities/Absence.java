@@ -45,6 +45,21 @@ public class Absence {
 		this.seance = seance;
 	}
 
+	
+
+	public Absence(String motif, Date date_absence, User created_by, Date created_at, User modified_by,
+			Date modified_at, Etudiant etudiant, Seance seance) {
+		super();
+		this.motif = motif;
+		this.date_absence = date_absence;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		this.etudiant = etudiant;
+		this.seance = seance;
+	}
+
 
 	public long getId() {
 		return id;
@@ -134,6 +149,7 @@ public class Absence {
 	public void setSeance(Seance seance) {
 		this.seance = seance;
 	}
+	
 	
 	
 }

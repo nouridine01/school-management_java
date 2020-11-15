@@ -24,6 +24,12 @@ public class User {
 
     @Column(unique=true)
     private String login;
+    
+    @Column(unique=true)
+    private String email;
+    
+    @Column(name="reset_token")
+    private String resetToken;
     @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -68,6 +74,19 @@ public class User {
 	}
 
 	
+
+	public User(String login, String email, String password, String pays, Collection<Role> roles, String lastName,
+			String firstName, String photo) {
+		super();
+		this.login = login;
+		this.email = email;
+		this.password = password;
+		this.pays = pays;
+		this.roles = roles;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.photo = photo;
+	}
 
 	public User() {
 		super();
@@ -171,6 +190,22 @@ public class User {
 
 	public void setModified_by(int modified_by) {
 		this.modified_by = modified_by;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
 	}
 
 

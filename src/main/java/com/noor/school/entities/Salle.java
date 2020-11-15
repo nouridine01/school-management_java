@@ -32,6 +32,9 @@ public class Salle {
 	private User modified_by;
 	private Date modified_at;
 	
+	@OneToMany(mappedBy="salle")
+	private Collection <Seance> seances;
+	
 	public Salle() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,18 +49,20 @@ public class Salle {
 		this.capacite = capacite;
 	}
 
-	public Salle(String libelle_salle, String code_salle, Date created_at, User created_by) {
-		super();
-		this.libelle_salle = libelle_salle;
-		this.code_salle = code_salle;
-		this.created_at = created_at;
-		this.created_by = created_by;
-	}
+	
 
-	public Salle(String libelle_salle, String code_salle) {
+	public Salle(String libelle_salle, String code_salle, String description, String dimension, String capacite,
+			User created_by, Date created_at, User modified_by, Date modified_at) {
 		super();
 		this.libelle_salle = libelle_salle;
 		this.code_salle = code_salle;
+		this.description = description;
+		this.dimension = dimension;
+		this.capacite = capacite;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
 	}
 
 	public long getId() {
@@ -140,12 +145,12 @@ public class Salle {
 		this.modified_by = modified_by;
 	}
 
-//	public Collection<Seance> getSeances() {
-//		return seances;
-//	}
-//
-//	public void setSeances(Collection<Seance> seances) {
-//		this.seances = seances;
-//	}
+	public Collection<Seance> getSeances() {
+		return seances;
+	}
+
+	public void setSeances(Collection<Seance> seances) {
+		this.seances = seances;
+	}
 
 }

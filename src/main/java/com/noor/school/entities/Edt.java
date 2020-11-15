@@ -34,6 +34,28 @@ public class Edt implements Serializable{
 	
 	@OneToMany(mappedBy="edt")
 	private Collection <Seance> seances;
+	
+	
+
+	public Edt() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public Edt(String libelle_edt, Date debut_edt, Date fin_edt, User created_by, Date created_at, User modified_by,
+			Date modified_at) {
+		super();
+		this.libelle_edt = libelle_edt;
+		this.debut_edt = debut_edt;
+		this.fin_edt = fin_edt;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		
+	}
+
 
 	public long getId() {
 		return id;

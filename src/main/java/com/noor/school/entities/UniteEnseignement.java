@@ -23,7 +23,6 @@ public class UniteEnseignement {
 	private User created_by;
 	private Date created_at;
 	@ManyToOne
-	
 	private User modified_by;
 	private Date modified_at;
 	

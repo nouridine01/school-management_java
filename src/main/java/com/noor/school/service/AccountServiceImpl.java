@@ -1,5 +1,7 @@
 package com.noor.school.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +30,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public User saveUser(String login, String lastName, String firstName, String password, String confirmPassword,
+	public User saveUser(String login,String email, String lastName, String firstName, String password, String confirmPassword,
 			String pays, String photo) {
 		// TODO Auto-generated method stub
 		
@@ -70,5 +72,19 @@ public class AccountServiceImpl implements AccountService{
 			AppUser.getRoles().add(AppRole);
 		
 	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public User findUserByResetToken(String resetToken) {
+		// TODO Auto-generated method stub
+		return userRepository.findByResetToken(resetToken);
+	}
+
+	
 
 }

@@ -43,25 +43,25 @@ public class Note {
 	}
 	
 
-	public Note(double note, String commentaire, Date created_at, User created_by, Enseignant enseignant,
-			com.noor.school.entities.Module module, Etudiant etudiant) {
+	
+
+	public Note(double note, int coefficient, String commentaire, User created_by, Date created_at, User modified_by,
+			Date modified_at, Enseignant enseignant, Module module, Etudiant etudiant, Bulletin bulletin) {
 		super();
 		this.note = note;
+		this.coefficient = coefficient;
 		this.commentaire = commentaire;
-		this.created_at = created_at;
 		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
 		this.enseignant = enseignant;
 		this.module = module;
 		this.etudiant = etudiant;
+		this.bulletin = bulletin;
 	}
 
-	public Note(double note, Enseignant enseignant, Module module, Etudiant etudiant) {
-		super();
-		this.note = note;
-		this.enseignant = enseignant;
-		this.module = module;
-		this.etudiant = etudiant;
-	}
+
 
 
 	public long getId() {

@@ -15,5 +15,7 @@ import com.noor.school.entities.User;
 public interface UserRepository extends JpaRepository<User,Long> {
 	
     public User findByLogin(String login);
+    public User findByEmail(String email);
+    public User findByResetToken(String resetToken);
     public Page<User> findByPays(String pays, Pageable pageable);
 }

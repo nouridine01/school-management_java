@@ -19,6 +19,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
 	@Override
@@ -29,6 +34,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		response.addHeader("Access-Control-Allow-Origin","*");
 		response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With, Content-type,Acess-Control-Requested-Method,Access-Control-Request-Headers,authorization");
 		response.addHeader("Access-Control-Expose-Headers","Access-Control-Allow-Origin,Access-Control-Allow-Credentials,authorization");
+		response.addHeader("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,PATCH");
 		
 		if(request.getMethod().equals("OPTIONS")) {
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -48,7 +54,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecurityParams.SECRET)).build();
 		DecodedJWT decodedJWT = verifier.verify(jwt.substring(SecurityParams.HEADER_PREFIX.length()));
 		String login = decodedJWT.getSubject();
-		List<String> role = decodedJWT.getClaim().getRole("role").asList(String.class);
+		List<String> role = decodedJWT.getClaims().get("role").asList(String.class);
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		role.forEach(rn->{
 			authorities.add(new SimpleGrantedAuthority(rn));

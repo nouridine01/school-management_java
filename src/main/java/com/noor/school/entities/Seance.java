@@ -69,15 +69,24 @@ public class Seance {
 		this.enseignant = enseignant;
 	}
 
-	public Seance(String libelle, String description, String heure_debut, String heure_fin, Module module,
-			Classe classe) {
+	public Seance(String libelle, String description, String heure_debut, String heure_fin, User created_by,
+			Date created_at, User modified_by, Date modified_at, Module module, Semaine semaine, Salle salle,
+			Classe classe, Enseignant enseignant,Edt edt) {
 		super();
 		this.libelle = libelle;
 		this.description = description;
 		this.heure_debut = heure_debut;
 		this.heure_fin = heure_fin;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
 		this.module = module;
+		this.semaine = semaine;
+		this.salle = salle;
 		this.classe = classe;
+		this.enseignant = enseignant;
+		this.edt = edt;
 	}
 
 	public long getId() {

@@ -21,9 +21,13 @@ public class Filiere implements Serializable {
 	private long id_filiere;
 	private String libelle;
 	private Date created_at;
-	private int created_by;
+	
+	@ManyToOne
+	private User created_by;
+	
 	private Date modified_at;
-	private int modified_by;
+	@ManyToOne
+	private User modified_by;
 	
 	
 	@ManyToOne
@@ -48,22 +52,21 @@ public class Filiere implements Serializable {
 	}
 	public Filiere(String libelle) {
 		super();
-		this.libelle = libelle;
 	}
 
-	public Filiere(String libelle, Date created_at, int created_by, Departement departement) {
+	
+	
+
+	public Filiere(String libelle, Date created_at, User created_by, Date modified_at, User modified_by,
+			Departement departement,Programme programme) {
 		super();
 		this.libelle = libelle;
 		this.created_at = created_at;
 		this.created_by = created_by;
+		this.modified_at = modified_at;
+		this.modified_by = modified_by;
 		this.departement = departement;
-	}
-
-	public Filiere(String libelle, Date created_at, int created_by) {
-		super();
-		this.libelle = libelle;
-		this.created_at = created_at;
-		this.created_by = created_by;
+		this.programme = programme;
 	}
 
 	public long getId_filiere() {
@@ -90,14 +93,7 @@ public class Filiere implements Serializable {
 		this.created_at = created_at;
 	}
 
-	public int getCreated_by() {
-		return created_by;
-	}
-
-	public void setCreated_by(int created_by) {
-		this.created_by = created_by;
-	}
-
+	
 	public Date getModified_at() {
 		return modified_at;
 	}
@@ -106,11 +102,20 @@ public class Filiere implements Serializable {
 		this.modified_at = modified_at;
 	}
 
-	public int getModified_by() {
+	
+	public User getCreated_by() {
+		return created_by;
+	}
+
+	public void setCreated_by(User created_by) {
+		this.created_by = created_by;
+	}
+
+	public User getModified_by() {
 		return modified_by;
 	}
 
-	public void setModified_by(int modified_by) {
+	public void setModified_by(User modified_by) {
 		this.modified_by = modified_by;
 	}
 

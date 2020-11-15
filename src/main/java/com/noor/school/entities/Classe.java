@@ -3,16 +3,18 @@ package com.noor.school.entities;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Classe {
+public class Classe{
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_classe;
 	private String libelle_classe;
 	@ManyToOne
@@ -38,19 +40,26 @@ public class Classe {
 	}
 	
 	
+	
+	public Classe(String libelle_classe, User created_by, Date created_at, User modified_by, Date modified_at,
+			 Filiere filiere) {
+		super();
+		this.libelle_classe = libelle_classe;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		this.filiere = filiere;
+	}
+
+
+
 	public Classe(String libelle_classe) {
 		super();
 		this.libelle_classe = libelle_classe;
 	}
 
-	public Classe(String libelle_classe, Collection<Etudiant> etudiants, Collection<Seance> seances, Filiere filiere) {
-		super();
-		this.libelle_classe = libelle_classe;
-		this.etudiants = etudiants;
-		this.seances = seances;
-		this.filiere = filiere;
-	}
-
+	
 
 	public long getId_classe() {
 		return id_classe;
@@ -140,5 +149,6 @@ public class Classe {
 	public void setFiliere(Filiere filiere) {
 		this.filiere = filiere;
 	}
+	
 	
 }

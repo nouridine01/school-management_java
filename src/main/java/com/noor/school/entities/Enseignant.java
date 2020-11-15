@@ -39,19 +39,31 @@ public class Enseignant {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Enseignant(Personnel personnel, String code_enseignant, String titre, Date created_at, User created_by, Collection<Note> notes,
-			Collection<Seance> seances) {
+	public Enseignant(Personnel personnel, String code_enseignant, String titre, Date created_at, User created_by) {
 		super();
 		this.personnel = personnel;
 		this.code_enseignant = code_enseignant;
 		this.titre_enseignant = titre;
 		this.created_at = created_at;
 		this.created_by = created_by;
-		this.notes = notes;
-		this.seances = seances;
+		
 	}
 
 	
+	
+
+	public Enseignant(String titre_enseignant, String code_enseignant, User created_by, Date created_at,
+			User modified_by, Date modified_at,
+			Personnel personnel) {
+		super();
+		this.titre_enseignant = titre_enseignant;
+		this.code_enseignant = code_enseignant;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		this.personnel = personnel;
+	}
 
 	public String getTitre_enseignant() {
 		return titre_enseignant;

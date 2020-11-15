@@ -53,14 +53,19 @@ public class Semestre {
 	}
 
 
-	public Semestre(int numero_semestre, String code_semestre, String libelle_semestre, Date created_at,
-			User created_by) {
+	
+	public Semestre(int numero_semestre, String code_semestre, String libelle_semestre, User created_by,
+			Date created_at, User modified_by, Date modified_at,Filiere filiere, Programme programme) {
 		super();
 		this.numero_semestre = numero_semestre;
 		this.code_semestre = code_semestre;
 		this.libelle_semestre = libelle_semestre;
-		this.created_at = created_at;
 		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		this.filiere = filiere;
+		this.programme = programme;
 	}
 
 	public long getId() {

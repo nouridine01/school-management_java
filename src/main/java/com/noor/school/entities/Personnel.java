@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Pattern;
+/*import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;*/
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+
+import lombok.NonNull;
 
 @Entity
 public class Personnel {
@@ -21,21 +23,21 @@ public class Personnel {
 	private String matricule;
 	private String nom;
 	private String prenom;
-	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$",
-            message="{invalid.telephone}")
+	/*@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$",
+            message="{invalid.telephone}")*/
 	private String telephone;
-	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+	/*@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 	        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
 	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-	             message="{invalid.email}")
+	             message="{invalid.email}")*/
 	private String email;
 	private String titre;
 	private String diplome;
 	private Date date_naissance;
-	@ManyToOne @Null
+	@ManyToOne @NonNull
 	private User created_by;
 	private Date created_at;
-	@ManyToOne @Null
+	@ManyToOne @NonNull
 	private User modified_by;
 	private Date modified_at;
 	
@@ -43,8 +45,8 @@ public class Personnel {
 	private Departement departement;
 	
 	
-	@ManyToOne
-	private Fonction fonction;
+	@OneToMany(mappedBy="personnel")
+	private Collection<Enseignant> enseignants;
 	
 	public Personnel() {
 		super();
@@ -66,8 +68,10 @@ public class Personnel {
 		this.departement = departement;
 	}
 	
+
 	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre,
-			String diplome, Fonction fonction) {
+			String diplome, Date date_naissance, @NonNull User created_by, Date created_at, @NonNull User modified_by,
+			Date modified_at, Departement departement) {
 		super();
 		this.matricule = matricule;
 		this.nom = nom;
@@ -76,38 +80,13 @@ public class Personnel {
 		this.email = email;
 		this.titre = titre;
 		this.diplome = diplome;
-		this.fonction = fonction;
-	}
-	
-	public Personnel(String matricule, String nom, String prenom, String telephone, String email, String titre,
-			String diplome) {
-		super();
-		this.matricule = matricule;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.email = email;
-		this.titre = titre;
-		this.diplome = diplome;
-	}
-
-
-	public Personnel(String nom, String prenom, String telephone, String email, Departement departement) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.email = email;
+		this.date_naissance = date_naissance;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
 		this.departement = departement;
-	}
-
-	public Fonction getFonction() {
-		return fonction;
-	}
-
-
-	public void setFonction(Fonction fonction) {
-		this.fonction = fonction;
+		
 	}
 
 

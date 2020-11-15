@@ -23,6 +23,6 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 	public Page<Etudiant> findByNom(@Param("nom") String nom, Pageable pageable);
 	
 	@RestResource(path="/parPrenom")
-	public Page<Etudiant> findByPrenom(@Param("prenom") String prenom, Pageable pageable);
+	public Page<Etudiant> findByPrenomContains(@Param("prenom") String prenom, Pageable pageable);
 	
 }

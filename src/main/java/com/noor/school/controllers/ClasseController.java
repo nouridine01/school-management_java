@@ -1,4 +1,4 @@
-package com.noor.school.controllers;
+/*package com.noor.school.controllers;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import com.noor.school.exceptions.ClasseNotFoundException;
 import com.noor.school.repositories.ClasseRepository;
 
 @CrossOrigin("*")
-@RestController
-public class ClasseController {
-	ClasseRepository repository;
+@RestController*/
+/*public class ClasseController {
+	//ClasseRepository repository;
 
     public ClasseController(ClasseRepository ClasseRepository) {
         this.repository=ClasseRepository;
@@ -54,14 +54,14 @@ public class ClasseController {
           return repository.save(classe);
         })
         .orElseGet(() -> {
-          newClasse.setId_classe(id);
-          return repository.save(newClasse);
+          //newClasse.setId_classe(id);
+          //return repository.save(newClasse);
         });
     }
 
     @DeleteMapping("/classes/{id}")
-    void deleteClasse(@PathVariable Long id) {
-      repository.deleteById(id);
-    }
+    void deleteClasse(@PathVariable Long id) {*/
+     //repository.deleteById(id);
+    /*}
 
-}
+}*/

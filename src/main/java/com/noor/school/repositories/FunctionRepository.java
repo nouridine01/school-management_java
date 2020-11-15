@@ -8,13 +8,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.noor.school.entities.Note;
+import com.noor.school.entities.Fonction;
 
 @CrossOrigin("*")
 @RepositoryRestResource
-public interface NoteRepository extends JpaRepository<Note, Long> {
-	
-	@RestResource(path="/parNote")
-	public Page<Note> findByNote(@Param("note") String note, Pageable pageable);
+public interface FunctionRepository extends JpaRepository<Fonction, Long>{
+	/*@RestResource(path="/parFonction")
+	public Page<Fonction> findByLibelle_fonction(@Param("libelle_fonction") String libelle_fonction, Pageable pageable);*/
 	
 }

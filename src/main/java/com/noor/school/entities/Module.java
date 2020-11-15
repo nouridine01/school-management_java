@@ -38,34 +38,23 @@ public class Module {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Module(String libelle_mobile, String code_module, String description, Date created_at, User created_by,
-			UniteEnseignement unite_enseignement) {
-		super();
-		this.libelle_module = libelle_mobile;
-		this.description = description;
-		this.created_at = created_at;
-		this.created_by = created_by;
-		this.unite_enseignement = unite_enseignement;
-	}
+	
 
-	public Module(String libelle_mobile, UniteEnseignement unite_enseignement) {
+	public Module(String libelle_module, String code_module, String description, User created_by, Date created_at,
+			User modified_by, Date modified_at, UniteEnseignement unite_enseignement) {
 		super();
-		this.libelle_module = libelle_mobile;
-		this.code_module = code_module;
-		this.unite_enseignement = unite_enseignement;
-	}
-
-	public Module(String libelle_mobile, String code_module, String description, Date created_at, User created_by,
-			UniteEnseignement unite_enseignement, Collection<Seance> seances) {
-		super();
-		this.libelle_module = libelle_mobile;
+		this.libelle_module = libelle_module;
 		this.code_module = code_module;
 		this.description = description;
-		this.created_at = created_at;
 		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
 		this.unite_enseignement = unite_enseignement;
-		this.seances = seances;
+		
 	}
+
+	
 	
 	
 

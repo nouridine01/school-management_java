@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.CascadeType;
+
 
 
 @Entity
@@ -48,6 +48,24 @@ public class Bulletin implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Bulletin(String libelle_bulletin, Date date_livraison, User created_by, Date created_at, User modified_by,
+			Date modified_at, Collection<Note> notes, Semestre semestre, Etudiant etudiant) {
+		super();
+		this.libelle_bulletin = libelle_bulletin;
+		this.date_livraison = date_livraison;
+		this.created_by = created_by;
+		this.created_at = created_at;
+		this.modified_by = modified_by;
+		this.modified_at = modified_at;
+		this.notes = notes;
+		this.semestre = semestre;
+		this.etudiant = etudiant;
+	}
+
+
 
 	public long getId() {
 		return id;
